@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Design tokens: black on white.
+   Colors are RGB channels (no rgb() wrapper) so Tailwind can apply
+   opacity modifiers. Mapped to utilities in tailwind.config.js.
+   ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    color-scheme: light;
+
+    --color-background: 255 255 255;
+    --color-surface: 245 245 245;
+    --color-border: 229 229 229;
+    --color-foreground: 0 0 0;
+    --color-muted: 115 115 115;
+    --color-primary: 0 0 0;
+    --color-primary-foreground: 255 255 255;
+    --color-accent: 160 160 160;
+
+    --font-sans: 'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --radius: 0px;
+    --content-width: 34rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-xs leading-normal text-foreground antialiased;
+  }
+
+  ::selection {
+    @apply bg-foreground text-background;
+  }
+}
+
+@layer components {
+  /* Tiny, uppercase, tracked-out text used for nav, labels and codes */
+  .label {
+    @apply text-[11px] uppercase tracking-[0.08em];
+  }
+}

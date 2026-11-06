@@ -1,0 +1,54 @@
+<header class="fixed inset-x-0 top-0 z-10 bg-background">
+  <div class="label flex h-12 items-center justify-between px-4">
+    <nav class="flex items-center gap-6" aria-label="Main">
+      <a
+        routerLink="/"
+        routerLinkActive="underline"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="underline-offset-4 hover:underline"
+        (click)="closeContact()"
+      >
+        Home
+      </a>
+      <a
+        routerLink="/about"
+        routerLinkActive="underline"
+        class="underline-offset-4 hover:underline"
+        (click)="closeContact()"
+      >
+        About
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      class="underline-offset-4 hover:underline"
+      aria-controls="contact-panel"
+      [attr.aria-expanded]="contactOpen()"
+      (click)="toggleContact()"
+    >
+      {{ contactOpen() ? '−' : '+' }}Contact
+    </button>
+  </div>
+
+  @if (contactOpen()) {
+    <div
+      id="contact-panel"
+      class="label flex flex-col items-end gap-2 border-b border-border px-4 pb-6 pt-2"
+    >
+      <a [href]="'mailto:' + profile.email" class="underline-offset-4 hover:underline">
+        {{ profile.email }}
+      </a>
+      @for (social of profile.socials; track social.href) {
+        <a
+          [href]="social.href"
+          target="_blank"
+          rel="noopener"
+          class="underline-offset-4 hover:underline"
+        >
+          {{ social.label }}
+        </a>
+      }
+    </div>
+  }
+</header>

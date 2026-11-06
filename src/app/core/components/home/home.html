@@ -1,0 +1,34 @@
+<section class="px-4 pb-16 pt-6">
+  <h1 class="label">{{ profile.name }} / {{ profile.role }}</h1>
+  <p class="label mt-1 text-muted">{{ profile.headline }}</p>
+
+  <ul class="mt-10 grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-3 lg:grid-cols-4">
+    @for (project of projects; track project.code) {
+      <li>
+        <a
+          [attr.href]="project.href ?? null"
+          target="_blank"
+          rel="noopener"
+          class="group block"
+        >
+          <div class="flex aspect-square items-center justify-center bg-surface">
+            @if (project.image) {
+              <img
+                [src]="project.image"
+                [alt]="project.title"
+                class="h-full w-full object-cover"
+              />
+            } @else {
+              <span class="label text-muted">{{ project.code }}</span>
+            }
+          </div>
+          <p class="label mt-3 underline-offset-4 group-hover:underline">
+            {{ project.code }} {{ project.title }}
+          </p>
+          <p class="mt-1 text-muted">{{ project.description }}</p>
+          <p class="label mt-2 text-muted">{{ project.tags.join(' / ') }}</p>
+        </a>
+      </li>
+    }
+  </ul>
+</section>

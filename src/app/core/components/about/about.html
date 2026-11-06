@@ -1,0 +1,18 @@
+<section class="px-4 pb-24 pt-6">
+  <h1 class="label">About</h1>
+
+  <div class="mt-10 max-w-content space-y-4">
+    @for (paragraph of profile.about; track paragraph) {
+      <p>{{ paragraph }}</p>
+    }
+  </div>
+
+  <dl class="mt-16 grid max-w-content gap-6">
+    @for (group of skillGroups; track group.title) {
+      <div>
+        <dt class="label text-muted">{{ group.title }}</dt>
+        <dd class="mt-1">{{ group.items.join(', ') }}</dd>
+      </div>
+    }
+  </dl>
+</section>
